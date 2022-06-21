@@ -17,6 +17,7 @@ struct PokemonListView: View {
                     GenerationView(generation: generations[index].rawValue)
                 }
             }
+            .listStyle(.plain)
             .onAppear {
                 UITableView
                     .appearance()
@@ -25,7 +26,6 @@ struct PokemonListView: View {
             .navigationTitle(
                 Text("Pokemon List")
             )
-
         }
     }
 }
