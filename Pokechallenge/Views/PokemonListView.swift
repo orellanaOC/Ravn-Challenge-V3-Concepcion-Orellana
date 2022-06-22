@@ -8,30 +8,39 @@
 import SwiftUI
 
 struct PokemonListView: View {
-    let generations = Generation.allCases
+    @ObservedObject var viewModel: PokemonListViewModel
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(0..<8) { index in
-                    GenerationView(generation: generations[index].rawValue)
+        ZStack {
+            NavigationView {
+                List(viewModel.generation, id: \.self) { generation in
+                    if !viewModel.isLoading {
+                        GenerationView(
+                            generation: generation,
+                            pokemons: viewModel.pokemons
+                        )
+                    }
                 }
+                .listStyle(.plain)
+                .onAppear {
+                    UITableView
+                        .appearance()
+                        .separatorColor = .clear
+
+                    viewModel.loadData()
+                }
+                .navigationTitle(
+                    Text("Pokemon List")
+                )
             }
-            .listStyle(.plain)
-            .onAppear {
-                UITableView
-                    .appearance()
-                    .separatorColor = .clear
-            }
-            .navigationTitle(
-                Text("Pokemon List")
-            )
+
+            Progress(isLoading: viewModel.isLoading)
         }
     }
 }
 
 struct PokemonListView_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonListView()
+        PokemonListView(viewModel: PokemonListViewModel(pokemonService: PokemonService()))
     }
 }

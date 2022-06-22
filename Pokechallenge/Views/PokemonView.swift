@@ -9,7 +9,7 @@ import Kingfisher
 import SwiftUI
 
 struct PokemonView: View {
-    let pokemon: Pokemon
+    let pokemon: PokemonSearch
 
     var body: some View {
         ZStack(alignment: .trailing) {
@@ -26,13 +26,13 @@ struct PokemonView: View {
                 )
 
             HStack {
-                KFImage(URL(string: pokemon.sprite))
+                KFImage(URL(string: pokemon.sprites))
                     .padding(
                         .init(
                             top: -DrawingConstants.measure30,
-                            leading: -DrawingConstants.measure30,
+                            leading: -DrawingConstants.measure15,
                             bottom: -DrawingConstants.measure30,
-                            trailing: -DrawingConstants.measure30
+                            trailing: -DrawingConstants.measure0
                         )
                     )
 
@@ -56,8 +56,6 @@ struct PokemonView: View {
 
                 Spacer()
 
-                Spacer()
-
                 HStack(alignment: .center, spacing: DrawingConstants.measure10) {
                     ForEach(pokemon.flavours) { flavour in
                         Image(flavour.name)
@@ -75,13 +73,12 @@ struct PokemonView: View {
             }
             .padding(
                 .init(
-                    top: DrawingConstants.measure15,
+                    top: DrawingConstants.measure20,
                     leading: DrawingConstants.measure0,
-                    bottom: DrawingConstants.measure15,
+                    bottom: DrawingConstants.measure20,
                     trailing: DrawingConstants.measure0
                 )
             )
-
         }
         .padding(
             .init(
@@ -103,15 +100,16 @@ struct PokemonView: View {
     }
 }
 
-struct PokemonView_Previews: PreviewProvider {
+ struct PokemonView_Previews: PreviewProvider {
     static var previews: some View {
         PokemonView(
             pokemon: .init(
-                id: 1, name: "Poke",
-                generation: Generation.generationI.rawValue,
-                sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/810.png",
-                flavours: [Flavour.init(name: "Grass")]
+                id: 1, name: "Pokemon X",
+                generation: "Generation I",
+                genus: "",
+                flavours: [],
+                sprites: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/810.png"
             )
         )
     }
-}
+ }

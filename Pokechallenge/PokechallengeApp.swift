@@ -11,7 +11,7 @@ import SwiftUI
 struct PokechallengeApp: App {
     var body: some Scene {
         WindowGroup {
-            PokemonListView()
+            PokemonListView(viewModel: PokemonListViewModel(pokemonService: PokemonService()))
         }
     }
 }
