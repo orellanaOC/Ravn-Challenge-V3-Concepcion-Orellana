@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct Pokemon: Identifiable {
+struct PokemonSearch: Identifiable {
     let id: Int
     let name: String
     let generation: String
-    let sprite: String
+    let genus: String
     let flavours: [Flavour]
+    let sprites: String
 }

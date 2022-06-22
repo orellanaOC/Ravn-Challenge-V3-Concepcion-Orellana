@@ -1,41 +1,14 @@
-query Pokemon {
-  allPokemon
-  {
+query allPokemon {
+  allPokemon {
     id,
     name,
     generation,
-    color,
     genus,
     types {
       name
     },
     sprites {
-      front_default,
-      front_shiny
-    },
-    pokedex_entries {
-      description
-    },
-    evolves_to {
-      id,
-      name,
-      generation,
-      color,
-      genus,
-      types {
-        name
-      },
-      sprites {
-        front_default,
-        front_shiny
-      },
-      evolves_to {
-        id,
-        name
-      },
-      pokedex_entries {
-        description
-      }
+      front_default
     }
   }
 }
