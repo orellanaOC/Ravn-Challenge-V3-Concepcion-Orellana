@@ -9,18 +9,7 @@ import SwiftUI
 
 struct GenerationView: View {
     let generation: String
-    let pokemons: [Pokemon] = [
-        .init(id: 1,
-              name: "Poke",
-              generation: Generation.generationI.rawValue,
-              sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/810.png",
-              flavours: [Flavour.init(name: "Grass")]),
-        .init(id: 2,
-              name: "Poke2",
-              generation: Generation.generationI.rawValue,
-              sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/810.png",
-              flavours: [.init(name: "Grass"), .init(name: "Grass")])
-    ]
+    let pokemons: [PokemonSearch]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -40,6 +29,6 @@ struct GenerationView: View {
 
 struct GenerationView_Previews: PreviewProvider {
     static var previews: some View {
-        GenerationView(generation: "Generation X")
+        GenerationView(generation: "Generation X", pokemons: [])
     }
 }
