@@ -39,8 +39,9 @@ opt_in_rules: # some rules are turned off by default, so you need to opt-in
 #   - vertical_whitespace
 
 included: # paths to include during linting. `--path` is ignored if present.
-  - Memorize
+  - Pokechallenge
 excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pokechallenge/Networking/API.swift
   - Carthage
   - Pods
   - Source/ExcludedFolder
