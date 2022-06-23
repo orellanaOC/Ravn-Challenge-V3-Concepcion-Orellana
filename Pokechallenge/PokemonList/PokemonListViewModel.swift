@@ -34,6 +34,7 @@ class PokemonListViewModel: ObservableObject {
                     case .finished:
                         self.isLoading = false
                     case .failure(let error):
+                        self.isLoading = false
                         self.isError = true
                         self.errorMessage = NSString(string: error.localizedDescription)
                             .components(separatedBy: ". ")
