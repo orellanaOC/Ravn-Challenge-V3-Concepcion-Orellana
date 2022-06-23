@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Flavour: Identifiable {
+struct Flavour: Identifiable, Codable {
     let name: String
 
     var id: String {

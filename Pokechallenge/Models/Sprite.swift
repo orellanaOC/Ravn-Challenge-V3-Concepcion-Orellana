@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Sprite {
+struct Sprite: Codable {
     let frontDefault: String
     let frontShiny: String
 }
