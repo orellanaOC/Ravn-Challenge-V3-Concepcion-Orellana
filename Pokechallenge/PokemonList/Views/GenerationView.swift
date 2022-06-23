@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct GenerationView: View {
+    var isShowGeneration = true
     let generation: String
     let pokemons: [PokemonSearch]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text(generation)
-                .padding(.top)
+            if isShowGeneration {
+                Text(generation)
+                    .padding(.top)
 
-            Divider()
+                Divider()
+            }
 
             ForEach(pokemons, id: \.id) { pokemon in
                 if pokemon.generation == generation {
