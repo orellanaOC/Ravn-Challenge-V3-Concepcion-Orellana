@@ -34,7 +34,7 @@ struct PokemonService: PokemonServiceProtocol {
                     name: values.0.name,
                     generation: values.1.generation,
                     color: values.0.color.name,
-                    genus: values.1.genus,
+                    isLegendary: values.0.isLegendary,
                     flavours: values.1.flavours,
                     sprites: values.1.sprites,
                     evolutions: values.1.evolutions,
@@ -72,7 +72,6 @@ struct PokemonService: PokemonServiceProtocol {
                              let pokemon: PokemonDetail = .init(
                                 id: pokemonFetch.id ?? -1,
                                 generation: pokemonFetch.generation ?? "",
-                                genus: pokemonFetch.genus ?? "",
                                 flavours: pokemonFetch.types?.map {
                                     Flavour(name: $0?.name ?? "")
                                 } ?? [],

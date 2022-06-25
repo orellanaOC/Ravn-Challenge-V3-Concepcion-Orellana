@@ -11,6 +11,7 @@ struct Characteristic: Codable {
     let id: Int
     let name: String
     let color: Color
+    let isLegendary: Bool
 
     struct Color: Codable {
         let name: String

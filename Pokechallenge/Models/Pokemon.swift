@@ -12,7 +12,7 @@ struct Pokemon: Identifiable, Codable {
     let name: String
     let generation: String
     let color: String
-    let genus: String
+    let isLegendary: Bool
     let flavours: [Flavour]
     let sprites: Sprite
     let evolutions: [Evolution]
@@ -25,7 +25,7 @@ extension Pokemon {
         name: "Pokemon X",
         generation:  "Generation I",
         color:  "",
-        genus:  "",
+        isLegendary: false,
         flavours: [],
         sprites: .init(
             frontDefault:  "",
