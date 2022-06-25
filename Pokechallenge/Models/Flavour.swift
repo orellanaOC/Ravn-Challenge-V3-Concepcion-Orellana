@@ -8,7 +8,7 @@
 import Foundation
 
 struct Flavour: Identifiable, Codable {
-    let name: String
+    var name: String
 
     var id: String {
         name

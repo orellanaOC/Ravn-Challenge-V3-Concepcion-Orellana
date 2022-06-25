@@ -12,8 +12,14 @@ class PokemonListViewModel: ObservableObject {
     @Published var pokemons: [PokemonSearch] = []
     @Published var pokemonsFiltered: [PokemonSearch] = []
     @Published var isLoading = false
-    @Published var isError = false
+    @Published var isShowingError = false
     @Published var errorMessage: String?
+    @Published var searchText = ""
+    @Published var isErrorToLoadData = false
+
+    var isShowGeneration: Bool {
+        generation.count > 1 ? true : false
+    }
 
     let pokemonService: PokemonServiceProtocol
     var generation: [String] = []
@@ -22,26 +28,35 @@ class PokemonListViewModel: ObservableObject {
 
     init(pokemonService: PokemonServiceProtocol) {
         self.pokemonService = pokemonService
+        loadData()
+        bindings()
+    }
+
+    func bindings() {
+        $searchText
+            .sink { [weak self] _ in
+                self?.filterPokemons()
+            }
+            .store(in: &cancellable)
     }
 
     func loadData() {
         isLoading = true
 
-        pokemonService.getAllPokemon()
+        pokemonService.getAll()
             .sink(
                 receiveCompletion: { result in
                     switch result {
-                    case .finished:
-                        self.isLoading = false
                     case .failure(let error):
                         self.isLoading = false
-                        self.isError = true
+                        self.isShowingError = true
                         self.errorMessage = NSString(string: error.localizedDescription)
                             .components(separatedBy: ". ")
                             .first
+                    default: break
                     }
+                    self.isLoading = false
                 }, receiveValue: { [weak self] pokemons in
-                    self?.isLoading = false
                     self?.pokemons = pokemons
                     self?.pokemonsFiltered = pokemons
                     self?.getGenerations()
@@ -50,8 +65,8 @@ class PokemonListViewModel: ObservableObject {
             .store(in: &cancellable)
     }
 
-    func filterPokemons(by searchText: String? = nil) {
-        if let searchText = searchText {
+    private func filterPokemons() {
+        if !searchText.isEmpty {
             pokemonsFiltered = pokemons.filter { $0.name.contains(searchText.lowercased()) }
         } else {
             pokemonsFiltered = pokemons

@@ -12,3 +12,30 @@ query allPokemon {
     }
   }
 }
+
+query singlePokemon($pokeId:Int!){
+  pokemon(id:$pokeId){
+      id,
+    name,
+    generation,
+    color,
+    genus,
+    types {
+      name
+    },
+    sprites {
+      front_default,
+      front_shiny
+    },
+    evolves_to {
+      id,
+      name,
+      sprites {
+        front_default
+      }
+    },
+    pokedex_entries {
+      description
+    }
+  }
+}

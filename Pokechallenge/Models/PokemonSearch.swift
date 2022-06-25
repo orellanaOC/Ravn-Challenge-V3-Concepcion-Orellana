@@ -15,3 +15,14 @@ struct PokemonSearch: Identifiable, Codable {
     let flavours: [Flavour]
     let sprites: String
 }
+
+extension PokemonSearch {
+    static let example = PokemonSearch(
+        id: -1,
+        name: "",
+        generation: "",
+        genus: "",
+        flavours: [],
+        sprites: ""
+    )
+}

@@ -32,6 +32,6 @@ struct GenerationView: View {
 
 struct GenerationView_Previews: PreviewProvider {
     static var previews: some View {
-        GenerationView(generation: "Generation X", pokemons: [])
+        GenerationView(generation: "", pokemons: [])
     }
 }
