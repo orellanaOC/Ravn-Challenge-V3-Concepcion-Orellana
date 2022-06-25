@@ -8,5 +8,6 @@
 import Foundation
 
 enum Constants {
-    static let baseUrl = "https://pokeapi-ravn.herokuapp.com/"
+    static let baseUrl = URL(string: "https://pokeapi-ravn.herokuapp.com/")!
+    static let urlDetail = URL(string: "https://pokeapi.co/api/v2/")!
 }
