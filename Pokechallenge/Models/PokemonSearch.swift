@@ -15,3 +15,13 @@ struct PokemonSearch: Identifiable, Codable {
     let flavours: [Flavour]
     let sprites: String
 }
+
+extension PokemonSearch {
+    static let pokemonDefault: PokemonSearch = .init(
+        id: 1, name: "Pokemon X",
+        generation: "Generation I",
+        genus: "",
+        flavours: [],
+        sprites: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/810.png"
+    )
+}
