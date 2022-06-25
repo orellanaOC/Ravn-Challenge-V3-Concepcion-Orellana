@@ -13,7 +13,7 @@ class PokemonDetailViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var isShowingError = false
     @Published var errorMessage: String?
-    @Published var spriteTypeSelected = 0
+    @Published var spriteTypeSelected: Int = .zero
 
     let pokemonID: Int
     let pokemonService: PokemonServiceProtocol

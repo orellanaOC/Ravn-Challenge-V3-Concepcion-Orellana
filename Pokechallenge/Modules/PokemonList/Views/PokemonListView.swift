@@ -34,7 +34,7 @@ struct PokemonListView: View {
                             .separatorColor = .clear
 
                         if viewModel.isShowingError,
-                            viewModel.pokemons.isEmpty {
+                           viewModel.pokemons.isEmpty {
                             viewModel.isErrorToLoadData = true
                         }
                     }
@@ -59,9 +59,7 @@ struct PokemonListView: View {
                             Text("Failed to Load Data")
                                 .font(
                                     .footnote
-                                        .weight(
-                                            .light
-                                        )
+                                        .weight(.light)
                                 )
                                 .foregroundColor(.red)
 

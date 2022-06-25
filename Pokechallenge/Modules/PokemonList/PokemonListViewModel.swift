@@ -16,6 +16,7 @@ class PokemonListViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var searchText = ""
     @Published var isErrorToLoadData = false
+
     var isShowGeneration: Bool {
         generation.count > 1 ? true : false
     }
@@ -64,7 +65,7 @@ class PokemonListViewModel: ObservableObject {
             .store(in: &cancellable)
     }
 
-    func filterPokemons() {
+    private func filterPokemons() {
         if !searchText.isEmpty {
             pokemonsFiltered = pokemons.filter { $0.name.contains(searchText.lowercased()) }
         } else {

@@ -9,10 +9,8 @@ import Kingfisher
 import SwiftUI
 
 struct PokemonInfoView: View {
-    @ObservedObject var viewModel: PokemonDetailViewModel
-
     @Environment(\.presentationMode) var presentation
-
+    @ObservedObject var viewModel: PokemonDetailViewModel
     @State var isSelected = true
 
     var body: some View {
@@ -43,7 +41,7 @@ struct PokemonInfoView: View {
                         )
                         .padding(
                             .init(
-                                top: -DrawingConstants.measure20,
+                                top: -DrawingConstants.measure15,
                                 leading: DrawingConstants.measure0,
                                 bottom: -DrawingConstants.measure20,
                                 trailing: DrawingConstants.measure0
@@ -68,17 +66,22 @@ struct PokemonInfoView: View {
                         }
                     }
 
-                    Picker(
-                        "Sprite Type",
-                        selection: $viewModel.spriteTypeSelected
-                    ) {
-                        Text("Default Sprite").tag(0)
-                        Text("Shiny Sprite").tag(1)
+                    if viewModel.pokemon.id > -1 {
+                        Picker(
+                            "Sprite Type",
+                            selection: $viewModel.spriteTypeSelected
+                        ) {
+                            Text("Default Sprite").tag(0)
+                            Text("Shiny Sprite").tag(1)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding(.horizontal)
                     }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(.horizontal)
 
-                    PokemonDetailView(pokemon: viewModel.pokemon)
+                    PokemonDetailView(
+                        isLoading: viewModel.isLoading,
+                        pokemon: viewModel.pokemon
+                    )
                 }
             }
             .navigationBarTitle(Text("Pokemon Info"))
@@ -115,6 +118,7 @@ struct PokemonInfoView: View {
 
     private struct DrawingConstants {
         static let measure0: CGFloat = .zero
+        static let measure15: CGFloat = 15
         static let measure20: CGFloat = 20
         static let measure50: CGFloat = 50
         static let measure100: CGFloat = 100

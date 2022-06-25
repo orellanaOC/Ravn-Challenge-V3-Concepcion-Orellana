@@ -12,3 +12,11 @@ struct Evolution: Identifiable, Codable {
     let name: String
     let sprites: String
 }
+
+extension Evolution {
+    static let example = Evolution(
+        id: -1,
+        name: "",
+        sprites: ""
+    )
+}

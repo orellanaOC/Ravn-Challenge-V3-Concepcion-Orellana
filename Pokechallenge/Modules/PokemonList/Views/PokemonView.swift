@@ -55,18 +55,14 @@ struct PokemonView: View {
                         Text(pokemon.name)
                             .font(
                                 .headline
-                                    .weight(
-                                        .bold
-                                    )
+                                    .weight(.bold)
                             )
                     }
 
                     Text("#\(pokemon.id)")
                         .font(
                             .headline
-                                .weight(
-                                    .light
-                                )
+                                .weight(.light)
                         )
                 }
 
@@ -115,7 +111,8 @@ struct PokemonView: View {
                         pokemonService: PokemonServiceFactory.newService()
                     )
                 ),
-                isActive: $isActivated) { EmptyView() }
+                isActive: $isActivated
+            ) { EmptyView() }
         )
     }
 
@@ -129,8 +126,8 @@ struct PokemonView: View {
     }
 }
 
- struct PokemonView_Previews: PreviewProvider {
+struct PokemonView_Previews: PreviewProvider {
     static var previews: some View {
         PokemonView(pokemon: .example)
     }
- }
+}
