@@ -109,7 +109,7 @@ struct PokemonView: View {
         }
         .background(
             NavigationLink(
-                destination: PokemonDetailView(
+                destination: PokemonInfoView(
                     viewModel: PokemonDetailViewModel(
                         pokemonID: pokemon.id,
                         pokemonService: PokemonServiceFactory.newService()
@@ -131,6 +131,6 @@ struct PokemonView: View {
 
  struct PokemonView_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonView(pokemon: .pokemonDefault)
+        PokemonView(pokemon: .example)
     }
  }

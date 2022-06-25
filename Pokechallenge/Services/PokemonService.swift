@@ -73,8 +73,14 @@ struct PokemonService: PokemonServiceProtocol {
                                 id: pokemonFetch.id ?? -1,
                                 generation: pokemonFetch.generation ?? "",
                                 flavours: pokemonFetch.types?.map {
-                                    Flavour(name: $0?.name ?? "")
-                                } ?? [],
+                                    var flavour = Flavour(name: "")
+                                    if !String(describing: $0?.name ?? "").isEmpty {
+                                        let name = String(describing: $0?.name ?? "")
+                                        flavour.name = "\(name)Tag"
+                                    }
+                                    return flavour
+                                }
+                                ?? [],
                                 sprites: Sprite(
                                     frontDefault: pokemonFetch.sprites?.frontDefault ?? "",
                                     frontShiny: pokemonFetch.sprites?.frontShiny ?? ""

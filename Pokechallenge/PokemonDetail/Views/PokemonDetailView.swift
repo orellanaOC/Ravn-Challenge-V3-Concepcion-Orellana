@@ -2,133 +2,59 @@
 //  PokemonDetailView.swift
 //  Pokechallenge
 //
-//  Created by Concepcion Orellana on 6/22/22.
+//  Created by Concepcion Orellana on 6/25/22.
 //
 
-import Kingfisher
 import SwiftUI
 
 struct PokemonDetailView: View {
-    @ObservedObject var viewModel: PokemonDetailViewModel
-
-    @Environment(\.presentationMode) var presentation
-
-    @State var isSelected = true
-
+    let pokemon: Pokemon
     var body: some View {
-        ZStack {
-            ZStack(alignment: .top) {
-                if !viewModel.pokemon.color.isEmpty {
-                    Color(viewModel.pokemon.color)
-                }
-
-                VStack(alignment: .center) {
-                    ZStack {
-                        KFImage(
-                            URL(
-                                string: viewModel.spriteTypeSelected == 0 ?
-                                viewModel.pokemon.sprites.frontDefault :
-                                    viewModel.pokemon.sprites.frontShiny
+        ZStack(alignment: .top) {
+            Color("PokemonCard")
+            VStack {
+                if pokemon.id != -1 {
+                Text("#\(pokemon.id) \(pokemon.name)")
+                    .font(
+                        .title
+                            .weight(
+                                .regular
                             )
-                        )
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .scaledToFill()
-                        .frame(
-                            minWidth: DrawingConstants.measure50,
-                            maxWidth: DrawingConstants.measure200,
-                            minHeight: DrawingConstants.measure50,
-                            maxHeight: DrawingConstants.measure200,
-                            alignment: .center
-                        )
-                        .padding(
-                            .init(
-                                top: -DrawingConstants.measure20,
-                                leading: DrawingConstants.measure0,
-                                bottom: -DrawingConstants.measure20,
-                                trailing: DrawingConstants.measure0
+                    )
+                    .padding()
+                }
+
+                HStack(alignment: .center, spacing: DrawingConstants.measure10) {
+                    ForEach(pokemon.flavours) { flavour in
+                        Image(flavour.name)
+                            .padding(
+                                .init(
+                                    top: -DrawingConstants.measure10,
+                                    leading: -DrawingConstants.measure10,
+                                    bottom: -DrawingConstants.measure10,
+                                    trailing: -DrawingConstants.measure10
+                                )
                             )
-                        )
-                        .clipped()
-                        .padding(.horizontal)
-
-                        ZStack(alignment: .topLeading) {
-                            if viewModel.pokemon.isLegendary {
-                                Image("Legendary")
-                                    .padding(
-                                        .init(
-                                            top: DrawingConstants.measure0,
-                                            leading: DrawingConstants.measure20,
-                                            bottom: DrawingConstants.measure100,
-                                            trailing: DrawingConstants.measure0
-                                        )
-                                    )
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                            }
-                        }
                     }
-
-                    Picker(
-                        "Sprite Type",
-                        selection: $viewModel.spriteTypeSelected
-                    ) {
-                        Text("Default Sprite").tag(0)
-                        Text("Shiny Sprite").tag(1)
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(.horizontal)
-
-                    Spacer()
                 }
+                .padding(.trailing)
             }
-            .navigationBarTitle(Text("Pokemon Info"))
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigation) {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.blue)
-                        .onTapGesture {
-                            self.presentation.wrappedValue.dismiss()
-                        }
-                }
-            }
-            .onAppear {
-                viewModel.getPokemon()
-            }
-            .alert(isPresented: $viewModel.isShowingError) {
-                Alert(title: Text("Error"),
-                      message: Text(viewModel.errorMessage ?? "Failed to Load Data"),
-                      primaryButton:
-                        .default(
-                            Text("Try Again"),
-                            action: { viewModel.getPokemon() }
-                        ),
-                      secondaryButton:
-                        .cancel()
-                )
-            }
-
-            Progress(isLoading: viewModel.isLoading)
         }
+        .cornerRadius(25, corners: [.topLeft, .topRight])
     }
 
     private struct DrawingConstants {
         static let measure0: CGFloat = .zero
+        static let measure5: CGFloat = 5
+        static let measure10: CGFloat = 10
+        static let measure15: CGFloat = 15
         static let measure20: CGFloat = 20
-        static let measure50: CGFloat = 50
-        static let measure100: CGFloat = 100
-        static let measure200: CGFloat = 200
+        static let measure30: CGFloat = 30
     }
 }
 
 struct PokemonDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonDetailView(
-            viewModel: PokemonDetailViewModel(
-                pokemonID: 1,
-                pokemonService: PokemonServiceFactory.newService()
-            )
-        )
+        PokemonDetailView(pokemon: .example)
     }
 }

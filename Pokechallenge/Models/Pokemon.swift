@@ -20,10 +20,10 @@ struct Pokemon: Identifiable, Codable {
 }
 
 extension Pokemon {
-    static let example: Pokemon = .init(
-        id: 1,
-        name: "Pokemon X",
-        generation:  "Generation I",
+    static let example = Pokemon(
+        id: -1,
+        name: "",
+        generation:  "",
         color:  "",
         isLegendary: false,
         flavours: [],
