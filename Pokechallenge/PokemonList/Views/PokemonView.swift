@@ -9,6 +9,8 @@ import Kingfisher
 import SwiftUI
 
 struct PokemonView: View {
+    @State private var isActivated = false
+
     let pokemon: PokemonSearch
 
     var body: some View {
@@ -37,13 +39,27 @@ struct PokemonView: View {
                     )
 
                 VStack(alignment: .leading) {
-                    Text(pokemon.name)
-                        .font(
-                            .headline
-                                .weight(
-                                    .bold
+                    HStack {
+                        if pokemon.genus.contains("Legendary") {
+                            Image("Legendary")
+                                .padding(
+                                    .init(
+                                        top: -DrawingConstants.measure10,
+                                        leading: -DrawingConstants.measure10,
+                                        bottom: -DrawingConstants.measure10,
+                                        trailing: DrawingConstants.measure0
+                                    )
                                 )
-                        )
+                        }
+
+                        Text(pokemon.name)
+                            .font(
+                                .headline
+                                    .weight(
+                                        .bold
+                                    )
+                            )
+                    }
 
                     Text("#\(pokemon.id)")
                         .font(
@@ -88,6 +104,19 @@ struct PokemonView: View {
                 trailing: DrawingConstants.measure0
             )
         )
+        .onTapGesture {
+            isActivated = true
+        }
+        .background(
+            NavigationLink(
+                destination: PokemonDetailView(
+                    viewModel: PokemonDetailViewModel(
+                        pokemonID: pokemon.id,
+                        pokemonService: PokemonServiceFactory.newService()
+                    )
+                ),
+                isActive: $isActivated) { EmptyView() }
+        )
     }
 
     private struct DrawingConstants {
@@ -102,14 +131,6 @@ struct PokemonView: View {
 
  struct PokemonView_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonView(
-            pokemon: .init(
-                id: 1, name: "Pokemon X",
-                generation: "Generation I",
-                genus: "",
-                flavours: [],
-                sprites: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/810.png"
-            )
-        )
+        PokemonView(pokemon: .pokemonDefault)
     }
  }
