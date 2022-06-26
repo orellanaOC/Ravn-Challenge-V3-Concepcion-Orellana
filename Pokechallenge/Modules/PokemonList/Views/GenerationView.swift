@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct GenerationView: View {
-    var isShowGeneration = true
     let generation: String
     let pokemons: [PokemonSearch]
+    var isShowGeneration = true
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {

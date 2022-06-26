@@ -14,14 +14,28 @@ class PokemonDetailViewModel: ObservableObject {
     @Published var isShowingError = false
     @Published var errorMessage: String?
     @Published var spriteTypeSelected: Int = .zero
+    @Published var isShowingConnectionLost = false
 
     let pokemonID: Int
     let pokemonService: PokemonServiceProtocol
+    let connectivity: ConnectivityService
     var cancellable = Set<AnyCancellable>()
 
-    init(pokemonID: Int, pokemonService: PokemonServiceProtocol) {
+    init(pokemonID: Int, pokemonService: PokemonServiceProtocol, connectivity: ConnectivityService) {
         self.pokemonID = pokemonID
         self.pokemonService = pokemonService
+        self.connectivity = connectivity
+
+        bindings()
+    }
+
+    func bindings() {
+        connectivity.$connected
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] connected in
+                self?.isShowingConnectionLost = !connected
+            }
+            .store(in: &cancellable)
     }
 
     func getPokemon() {

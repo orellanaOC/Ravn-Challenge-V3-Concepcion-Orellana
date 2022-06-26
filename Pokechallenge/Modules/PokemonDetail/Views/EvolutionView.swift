@@ -33,7 +33,8 @@ struct EvolutionView: View {
                                 destination: PokemonInfoView(
                                     viewModel: PokemonDetailViewModel(
                                         pokemonID: evolution.id,
-                                        pokemonService: PokemonServiceFactory.newService()
+                                        pokemonService: PokemonServiceFactory.newService(),
+                                        connectivity: ConnectivityService(networkMonitor: NetworkMonitor())
                                     )
                                 ),
                                 isActive: $isActivated
