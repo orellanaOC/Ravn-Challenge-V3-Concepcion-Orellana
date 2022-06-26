@@ -16,26 +16,37 @@ class PokemonListViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var searchText = ""
     @Published var isErrorToLoadData = false
+    @Published var isShowingConnectionLost = false
 
     var isShowGeneration: Bool {
         generation.count > 1 ? true : false
     }
 
     let pokemonService: PokemonServiceProtocol
+    let connectivity: ConnectivityService
     var generation: [String] = []
     var allGenerations: Set<String> = []
     var cancellable = Set<AnyCancellable>()
 
-    init(pokemonService: PokemonServiceProtocol) {
+    init(pokemonService: PokemonServiceProtocol, connectivity: ConnectivityService) {
         self.pokemonService = pokemonService
+        self.connectivity = connectivity
+
         loadData()
         bindings()
     }
 
-    func bindings() {
+    private func bindings() {
         $searchText
             .sink { [weak self] _ in
                 self?.filterPokemons()
+            }
+            .store(in: &cancellable)
+
+        connectivity.$connected
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] connected in
+                self?.isShowingConnectionLost = !connected
             }
             .store(in: &cancellable)
     }

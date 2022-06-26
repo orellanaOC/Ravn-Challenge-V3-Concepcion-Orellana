@@ -24,20 +24,7 @@ struct PokemonDetailView: View {
                         )
                         .padding()
 
-                    HStack(alignment: .center, spacing: DrawingConstants.measure10) {
-                        ForEach(pokemon.flavours) { flavour in
-                            Image(flavour.name)
-                                .padding(
-                                    .init(
-                                        top: -DrawingConstants.measure10,
-                                        leading: -DrawingConstants.measure10,
-                                        bottom: -DrawingConstants.measure10,
-                                        trailing: -DrawingConstants.measure10
-                                    )
-                                )
-                        }
-                    }
-                    .padding(.trailing)
+                    FlavourView(flavours: pokemon.flavours)
 
                     Text(pokemon.generation)
                         .font(

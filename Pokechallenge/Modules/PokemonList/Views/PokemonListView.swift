@@ -18,11 +18,11 @@ struct PokemonListView: View {
                         if !viewModel.isLoading,
                            !viewModel.pokemons.isEmpty {
                             GenerationView(
-                                isShowGeneration: viewModel.isShowGeneration,
                                 generation: generation,
                                 pokemons: viewModel.searchText.isEmpty ?
-                                viewModel.pokemons :
-                                    viewModel.pokemonsFiltered
+                                viewModel.pokemons:
+                                    viewModel.pokemonsFiltered,
+                                isShowGeneration: viewModel.isShowGeneration
                             )
                             .listRowBackground(Color.clear)
                         }
@@ -54,17 +54,13 @@ struct PokemonListView: View {
                         )
                     }
 
-                    if viewModel.isErrorToLoadData {
-                        VStack(alignment: .center) {
-                            Text("Failed to Load Data")
-                                .font(
-                                    .footnote
-                                        .weight(.light)
-                                )
-                                .foregroundColor(.red)
+                    if viewModel.isShowingConnectionLost,
+                       viewModel.pokemons.isEmpty {
+                        NetworkImageView()
+                    }
 
-                            Spacer()
-                        }
+                    if viewModel.isErrorToLoadData {
+                        FailedToLoadDataView()
                     }
                 }
             }
@@ -75,6 +71,18 @@ struct PokemonListView: View {
 
             Progress(isLoading: viewModel.isLoading)
         }
+        .alert(isPresented: $viewModel.isShowingConnectionLost) {
+            Alert(title: Text("Connectivity Issue"),
+                  message: Text("There is a problem trying to connect. \nPlease check your connectivity"),
+                  primaryButton:
+                    .default(
+                        Text("Try Again"),
+                        action: { viewModel.loadData() }
+                    ),
+                  secondaryButton:
+                    .cancel()
+            )
+        }
     }
 }
 
@@ -82,7 +90,8 @@ struct PokemonListView_Previews: PreviewProvider {
     static var previews: some View {
         PokemonListView(
             viewModel: PokemonListViewModel(
-                pokemonService: PokemonServiceFactory.newService()
+                pokemonService: PokemonServiceFactory.newService(),
+                connectivity: ConnectivityService(networkMonitor: NetworkMonitor())
             )
         )
     }

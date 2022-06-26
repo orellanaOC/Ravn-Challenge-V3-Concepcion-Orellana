@@ -13,7 +13,8 @@ struct PokechallengeApp: App {
         WindowGroup {
             PokemonListView(
                 viewModel: PokemonListViewModel(
-                    pokemonService: PokemonServiceFactory.newService()
+                    pokemonService: PokemonServiceFactory.newService(),
+                    connectivity: ConnectivityService(networkMonitor: NetworkMonitor())
                 )
             )
         }

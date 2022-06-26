@@ -112,6 +112,10 @@ struct PokemonInfoView: View {
                 )
             }
 
+            if viewModel.isShowingConnectionLost {
+                NetworkImageView()
+            }
+
             Progress(isLoading: viewModel.isLoading)
         }
     }
@@ -130,8 +134,9 @@ struct PokemonInfoView_Previews: PreviewProvider {
     static var previews: some View {
         PokemonInfoView(
             viewModel: PokemonDetailViewModel(
-                pokemonID: 1,
-                pokemonService: PokemonServiceFactory.newService()
+                pokemonID: -1,
+                pokemonService: PokemonServiceFactory.newService(),
+                connectivity: ConnectivityService(networkMonitor: NetworkMonitor())
             )
         )
     }

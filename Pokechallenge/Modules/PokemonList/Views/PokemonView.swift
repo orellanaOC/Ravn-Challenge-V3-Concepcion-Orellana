@@ -68,20 +68,7 @@ struct PokemonView: View {
 
                 Spacer()
 
-                HStack(alignment: .center, spacing: DrawingConstants.measure10) {
-                    ForEach(pokemon.flavours) { flavour in
-                        Image(flavour.name)
-                            .padding(
-                                .init(
-                                    top: -DrawingConstants.measure10,
-                                    leading: -DrawingConstants.measure10,
-                                    bottom: -DrawingConstants.measure10,
-                                    trailing: -DrawingConstants.measure10
-                                )
-                            )
-                    }
-                }
-                .padding(.trailing)
+                FlavourView(flavours: pokemon.flavours)
             }
             .padding(
                 .init(
@@ -108,7 +95,8 @@ struct PokemonView: View {
                 destination: PokemonInfoView(
                     viewModel: PokemonDetailViewModel(
                         pokemonID: pokemon.id,
-                        pokemonService: PokemonServiceFactory.newService()
+                        pokemonService: PokemonServiceFactory.newService(),
+                        connectivity: ConnectivityService(networkMonitor: NetworkMonitor())
                     )
                 ),
                 isActive: $isActivated
