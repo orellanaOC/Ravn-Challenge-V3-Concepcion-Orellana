@@ -9,7 +9,7 @@ import Apollo
 import CoreData
 
 class Network {
-    static let shared = Network()
     private(set) lazy var apollo = ApolloClient(url: Constants.baseUrl)
+    static let shared = Network()
     private init() { }
 }

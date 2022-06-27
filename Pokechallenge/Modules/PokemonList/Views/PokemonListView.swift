@@ -40,7 +40,7 @@ struct PokemonListView: View {
                     }
                     .navigationTitle(
                         Text("Pokemon List")
-                    )
+                    ) // API error alert
                     .alert(isPresented: $viewModel.isShowingError) {
                         Alert(title: Text("Error"),
                               message: Text(viewModel.errorMessage ?? "Failed to Load Data"),

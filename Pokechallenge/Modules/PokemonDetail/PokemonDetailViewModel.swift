@@ -29,6 +29,8 @@ class PokemonDetailViewModel: ObservableObject {
         bindings()
     }
 
+    // MARK: - Check the status of the internet connection
+
     func bindings() {
         connectivity.$connected
             .receive(on: DispatchQueue.main)
@@ -37,6 +39,8 @@ class PokemonDetailViewModel: ObservableObject {
             }
             .store(in: &cancellable)
     }
+
+    // MARK: - API Request
 
     func getPokemon() {
         isLoading = true

@@ -20,6 +20,8 @@ struct PokemonService: PokemonServiceProtocol {
     let base = Constants.urlDetail
     var connection: Network = .shared
 
+    // MARK: - Get pokemon details by ID
+
     func getDetail(for pokemonID: Int) -> AnyPublisher<Pokemon, Error> {
         getPokemonEvolution(by: pokemonID)
             .flatMap { detail in
@@ -44,6 +46,7 @@ struct PokemonService: PokemonServiceProtocol {
             .eraseToAnyPublisher()
     }
 
+    // Get pokemon details from: PokeAPI
     private func getSinglePokemon(by pokemonID: Int) -> AnyPublisher<Characteristic, Error> {
         let components = URLComponents(url: base, resolvingAgainstBaseURL: true)
 
@@ -62,6 +65,7 @@ struct PokemonService: PokemonServiceProtocol {
             .eraseToAnyPublisher()
     }
 
+    // Get pokemon details from: GraphQL
     private func getPokemonEvolution(by pokemonID: Int) -> AnyPublisher<PokemonDetail, Error> {
         Future { promise in
             DispatchQueue.main.async {
@@ -93,7 +97,8 @@ struct PokemonService: PokemonServiceProtocol {
                                             name: $0?.name ?? "",
                                             sprites: $0?.sprites?.frontDefault ?? ""
                                         )
-                                    } ?? [],
+                                    }
+                                ?? [],
                                 description: pokemonFetch.pokedexEntries?
                                     .first??.description?.lowercased() ?? ""
                             )
@@ -107,6 +112,8 @@ struct PokemonService: PokemonServiceProtocol {
         }
         .eraseToAnyPublisher()
     }
+
+    //MARK: Get all main pokemon info
 
     func getAll() -> AnyPublisher<[PokemonSearch], Error> {
         Future { promise in
@@ -125,7 +132,8 @@ struct PokemonService: PokemonServiceProtocol {
                                         flavours: data?.types?
                                             .map {
                                                 Flavour(name: $0?.name ?? "")
-                                            } ?? [],
+                                            }
+                                        ?? [],
                                         sprites: data?.sprites?.frontDefault ?? ""
                                     )
                                 }

@@ -17,6 +17,7 @@ struct NetworkProvider: NetworkProviderType {
 
     func run<T: Decodable>(_ request: URLRequest, _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Response<T>, Error> {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
+
         return session
             .dataTaskPublisher(for: request)
             .tryMap { result -> Response<T> in
@@ -24,10 +25,13 @@ struct NetworkProvider: NetworkProviderType {
                       httpResponse.statusCode == 200 else {
                     throw URLError(.badServerResponse)
                 }
+
                 guard !result.data.isEmpty else {
                     throw URLError(.zeroByteResource)
                 }
+
                 let value = try decoder.decode(T.self, from: result.data)
+
                 return Response(value: value, response: result.response)
             }
             .eraseToAnyPublisher()
