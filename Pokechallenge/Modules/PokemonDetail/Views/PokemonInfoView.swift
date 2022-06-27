@@ -98,7 +98,7 @@ struct PokemonInfoView: View {
             }
             .onAppear {
                 viewModel.getPokemon()
-            }
+            } // API error alert
             .alert(isPresented: $viewModel.isShowingError) {
                 Alert(title: Text("Error"),
                       message: Text(viewModel.errorMessage ?? "Failed to Load Data"),

@@ -18,15 +18,15 @@ class PokemonListViewModel: ObservableObject {
     @Published var isErrorToLoadData = false
     @Published var isShowingConnectionLost = false
 
-    var isShowGeneration: Bool {
-        generation.count > 1 ? true : false
-    }
-
     let pokemonService: PokemonServiceProtocol
     let connectivity: ConnectivityService
     var generation: [String] = []
     var allGenerations: Set<String> = []
     var cancellable = Set<AnyCancellable>()
+
+    var isShowGeneration: Bool {
+        generation.count > 1 ? true : false
+    }
 
     init(pokemonService: PokemonServiceProtocol, connectivity: ConnectivityService) {
         self.pokemonService = pokemonService
@@ -36,6 +36,8 @@ class PokemonListViewModel: ObservableObject {
         bindings()
     }
 
+    // MARK: - Verify change of status
+
     private func bindings() {
         $searchText
             .sink { [weak self] _ in
@@ -43,6 +45,7 @@ class PokemonListViewModel: ObservableObject {
             }
             .store(in: &cancellable)
 
+        // Check the status of the internet connection
         connectivity.$connected
             .receive(on: DispatchQueue.main)
             .sink { [weak self] connected in
@@ -50,6 +53,8 @@ class PokemonListViewModel: ObservableObject {
             }
             .store(in: &cancellable)
     }
+
+    // MARK: - API Request
 
     func loadData() {
         isLoading = true
@@ -75,6 +80,8 @@ class PokemonListViewModel: ObservableObject {
             )
             .store(in: &cancellable)
     }
+
+    // MARK: - Filter pokemons
 
     private func filterPokemons() {
         if !searchText.isEmpty {

@@ -25,4 +25,17 @@ extension PokemonSearch {
         flavours: [],
         sprites: ""
     )
+
+    static let pokemonListTest = [
+        PokemonSearch(
+            id: 25,
+            name: "Pikachu",
+            generation: "Generation I",
+            genus: "Mouse Pokémon",
+            flavours: [
+                .init(name: "Electric")
+            ],
+            sprites: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+        )
+    ]
 }
