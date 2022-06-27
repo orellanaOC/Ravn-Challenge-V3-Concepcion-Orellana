@@ -55,7 +55,7 @@ class PokemonServiceTests: XCTestCase {
                 receiveCompletion: { _ in expectation.fulfill() },
                 receiveValue: { _ in }
             )
-        wait(for: [expectation], timeout: 3)
+        wait(for: [expectation], timeout: 5)
 
         let components = URLComponents(url: try XCTUnwrap(calledRequest?.url), resolvingAgainstBaseURL: true)
 
