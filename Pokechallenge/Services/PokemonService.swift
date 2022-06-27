@@ -113,7 +113,7 @@ struct PokemonService: PokemonServiceProtocol {
         .eraseToAnyPublisher()
     }
 
-    //MARK: Get all main pokemon info
+    // MARK: Get all main pokemon info
 
     func getAll() -> AnyPublisher<[PokemonSearch], Error> {
         Future { promise in

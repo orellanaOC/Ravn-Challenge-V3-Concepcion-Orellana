@@ -25,6 +25,9 @@
 		EEA4C741286807E80090E05F /* FailedToLoadDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4C740286807E80090E05F /* FailedToLoadDataView.swift */; };
 		EEA4C7432868081D0090E05F /* NetworkImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4C7422868081D0090E05F /* NetworkImageView.swift */; };
 		EEA4C74528680A3B0090E05F /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4C74428680A3B0090E05F /* NetworkMonitor.swift */; };
+		EEA4C74D286A17FD0090E05F /* PokemonServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4C74C286A17FD0090E05F /* PokemonServiceTests.swift */; };
+		EEA4C755286A18390090E05F /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4C754286A18390090E05F /* URLSessionMock.swift */; };
+		EEA4C757286A18A20090E05F /* PokemonServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4C756286A18A20090E05F /* PokemonServiceMock.swift */; };
 		EEA6A5B728622E8D003B3DDF /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA6A5B628622E8D003B3DDF /* API.swift */; };
 		EEA6A5B928625DA0003B3DDF /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA6A5B828625DA0003B3DDF /* Sprite.swift */; };
 		EEA6A5BC28626484003B3DDF /* PokemonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA6A5BB28626484003B3DDF /* PokemonService.swift */; };
@@ -50,6 +53,16 @@
 		EEB03D7F28621FF800516A78 /* Queries.graphql in Resources */ = {isa = PBXBuildFile; fileRef = EEB03D7E28621FF800516A78 /* Queries.graphql */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		EEA4C74E286A17FD0090E05F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EEB03D272860E33800516A78 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EEB03D2E2860E33800516A78;
+			remoteInfo = Pokechallenge;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		EE2521922864F976006349AE /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 		EE2521952864F9BD006349AE /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
@@ -69,6 +82,10 @@
 		EEA4C740286807E80090E05F /* FailedToLoadDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailedToLoadDataView.swift; sourceTree = "<group>"; };
 		EEA4C7422868081D0090E05F /* NetworkImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageView.swift; sourceTree = "<group>"; };
 		EEA4C74428680A3B0090E05F /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		EEA4C74A286A17FD0090E05F /* PokechallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokechallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEA4C74C286A17FD0090E05F /* PokemonServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonServiceTests.swift; sourceTree = "<group>"; };
+		EEA4C754286A18390090E05F /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		EEA4C756286A18A20090E05F /* PokemonServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonServiceMock.swift; sourceTree = "<group>"; };
 		EEA6A5B628622E8D003B3DDF /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		EEA6A5B828625DA0003B3DDF /* Sprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
 		EEA6A5BB28626484003B3DDF /* PokemonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonService.swift; sourceTree = "<group>"; };
@@ -94,6 +111,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EEA4C747286A17FD0090E05F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EEB03D2C2860E33800516A78 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -155,6 +179,24 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		EEA4C74B286A17FD0090E05F /* PokechallengeTests */ = {
+			isa = PBXGroup;
+			children = (
+				EEA4C753286A181E0090E05F /* Mocks */,
+				EEA4C74C286A17FD0090E05F /* PokemonServiceTests.swift */,
+			);
+			path = PokechallengeTests;
+			sourceTree = "<group>";
+		};
+		EEA4C753286A181E0090E05F /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				EEA4C754286A18390090E05F /* URLSessionMock.swift */,
+				EEA4C756286A18A20090E05F /* PokemonServiceMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		EEA6A5BA2862646E003B3DDF /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				EEB03D312860E33800516A78 /* Pokechallenge */,
+				EEA4C74B286A17FD0090E05F /* PokechallengeTests */,
 				EEB03D302860E33800516A78 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -205,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				EEB03D2F2860E33800516A78 /* Pokechallenge.app */,
+				EEA4C74A286A17FD0090E05F /* PokechallengeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -291,6 +335,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EEA4C749286A17FD0090E05F /* PokechallengeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEA4C752286A17FD0090E05F /* Build configuration list for PBXNativeTarget "PokechallengeTests" */;
+			buildPhases = (
+				EEA4C746286A17FD0090E05F /* Sources */,
+				EEA4C747286A17FD0090E05F /* Frameworks */,
+				EEA4C748286A17FD0090E05F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EEA4C74F286A17FD0090E05F /* PBXTargetDependency */,
+			);
+			name = PokechallengeTests;
+			productName = PokechallengeTests;
+			productReference = EEA4C74A286A17FD0090E05F /* PokechallengeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EEB03D2E2860E33800516A78 /* Pokechallenge */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EEB03D532860E33B00516A78 /* Build configuration list for PBXNativeTarget "Pokechallenge" */;
@@ -324,6 +386,10 @@
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
+					EEA4C749286A17FD0090E05F = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = EEB03D2E2860E33800516A78;
+					};
 					EEB03D2E2860E33800516A78 = {
 						CreatedOnToolsVersion = 13.3;
 					};
@@ -347,11 +413,19 @@
 			projectRoot = "";
 			targets = (
 				EEB03D2E2860E33800516A78 /* Pokechallenge */,
+				EEA4C749286A17FD0090E05F /* PokechallengeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EEA4C748286A17FD0090E05F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EEB03D2D2860E33800516A78 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -405,6 +479,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EEA4C746286A17FD0090E05F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEA4C757286A18A20090E05F /* PokemonServiceMock.swift in Sources */,
+				EEA4C755286A18390090E05F /* URLSessionMock.swift in Sources */,
+				EEA4C74D286A17FD0090E05F /* PokemonServiceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EEB03D2B2860E33800516A78 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -449,7 +533,49 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		EEA4C74F286A17FD0090E05F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EEB03D2E2860E33800516A78 /* Pokechallenge */;
+			targetProxy = EEA4C74E286A17FD0090E05F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		EEA4C750286A17FD0090E05F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PokechallengeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokechallenge.app/Pokechallenge";
+			};
+			name = Debug;
+		};
+		EEA4C751286A17FD0090E05F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PokechallengeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokechallenge.app/Pokechallenge";
+			};
+			name = Release;
+		};
 		EEB03D512860E33B00516A78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -623,6 +749,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EEA4C752286A17FD0090E05F /* Build configuration list for PBXNativeTarget "PokechallengeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEA4C750286A17FD0090E05F /* Debug */,
+				EEA4C751286A17FD0090E05F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EEB03D2A2860E33800516A78 /* Build configuration list for PBXProject "Pokechallenge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
